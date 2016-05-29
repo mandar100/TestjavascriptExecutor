@@ -1,0 +1,16 @@
+http://www.webservicex.net/CurrencyConvertor.asmx
+
+http://search.yahooapis.com/ImageSearchService/V1/imagesearch?appid=YahooDemo&query=Madonna&output=xml
+
+http://maps.googleapis.com/maps/api/geocode/xml?address=Rio&sensor=false
+
+
+from Kriti Tiwari to Everyone:
+GET /stockquote.asmx/GetQuote?symbol=string HTTP/1.1
+Host: www.webservicex.net
+from Kriti Tiwari to Everyone:
+Path 
+from Kriti Tiwari to Everyone:
+/stockquote.asmx/GetQuote?symbol=string
+from Kriti Tiwari to Everyone:
+http://rubular.com/
