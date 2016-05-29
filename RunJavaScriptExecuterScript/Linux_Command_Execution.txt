@@ -1,0 +1,287 @@
+login as: baseuser4
+baseuser4@10.44.189.223's password:
+Last login: Mon Jul  6 12:46:32 2015 from 10.44.20.187
+[baseuser4@rhel6 ~]$ who
+baseuser5 pts/0        2015-07-06 12:25 (bll04815.persistent.co.in)
+root     tty1         2015-07-06 10:31 (:0)
+baseuser4 pts/2        2015-07-06 11:04 (brd0487.persistent.co.in)
+ptester  pts/1        2015-07-06 11:04 (psng794.persistent.co.in)
+baseuser4 pts/3        2015-07-06 17:49 (ps7855.persistent.co.in)
+baseuser1 pts/5        2015-07-06 13:48 (ps6475.persistent.co.in)
+baseuser5 pts/6        2015-07-06 11:14 (god10996.persistent.co.in)
+baseuser5 pts/8        2015-07-06 14:34 (bhd10060.persistent.co.in)
+ptester  pts/10       2015-07-06 12:55 (hjl04252.persistent.co.in)
+ptester  pts/11       2015-07-06 13:42 (10.77.164.97)
+baseuser1 pts/12       2015-07-06 13:49 (ngd11115.persistent.co.in)
+baseuser3 pts/13       2015-07-06 15:10 (10.44.20.187)
+[baseuser4@rhel6 ~]$ ll -l
+total 64
+-rwxrwxr-- 1 baseuser4 baseuser4    65 Jul  6 11:09 file1
+-rw-rw-r-- 1 baseuser4 baseuser4  9797 Jul  6 15:59 file1.txt
+-rw-rw-r-- 1 baseuser4 baseuser4    12 Jul  6 11:05 file2
+-rw-rw-r-- 1 baseuser4 baseuser4  9797 Jul  6 15:58 file21.txt
+-rw-rw-r-- 1 baseuser4 baseuser4 10297 Jul  6 14:29 file2.txt
+-rw-rw-r-- 1 baseuser4 baseuser4     0 Jul  6 13:57 file3.txt
+-rw-rw-r-- 1 baseuser4 baseuser4     0 Jul  3 18:52 legal
+drwxrwxr-x 2 baseuser4 baseuser4  4096 Jul  3 20:00 Mandar7878
+-rw-rw-r-- 1 baseuser4 baseuser4     0 Jul  3 18:53 part.txt
+drwxrwxr-x 3 baseuser4 baseuser4  4096 Jul  6 11:47 temp
+drwx------ 2 baseuser4 baseuser4  4096 Jul  6 11:39 us01
+drwxrwxr-x 2 baseuser4 baseuser4  4096 Jul  6 16:54 vijay
+-rw-rw-r-- 1 baseuser4 baseuser4     0 Jul  6 11:06 Yogita2
+drwxrwxr-x 2 baseuser4 baseuser4  4096 Jul  6 11:30 Yogita_tutorial
+[baseuser4@rhel6 ~]$ cd Mandar7878/
+[baseuser4@rhel6 Mandar7878]$ cd..
+-bash: cd..: command not found
+[baseuser4@rhel6 Mandar7878]$ cd ..
+[baseuser4@rhel6 ~]$ clear
+[baseuser4@rhel6 ~]$ cd Mandar7878/
+[baseuser4@rhel6 Mandar7878]$ man grep
+ [baseuser4@rhel6 Mandar7878]$ man grep
+GREP(1)                                                                GREP(1)
+
+NAME
+       grep, egrep, fgrep - print lines matching a pattern
+
+SYNOPSIS
+       grep [OPTIONS] PATTERN [FILE...]
+       grep [OPTIONS] [-e PATTERN | -f FILE] [FILE...]
+
+DESCRIPTION
+       grep  searches  the named input FILEs (or standard input if no files are named, or if a single hyphen-minus (-) is given as file name)
+       for lines containing a match to the given PATTERN.  By default, grep prints the matching lines.
+
+       In addition, two variant programs egrep and fgrep are available.  egrep is the same as grep -E.  fgrep is the same as grep -F.  Direct
+       invocation  as  either  egrep  or  fgrep  is  deprecated,  but  is  provided to allow historical applications that rely on them to run
+       unmodified.
+
+OPTIONS
+   Generic Program Information
+       --help Print a usage message briefly summarizing these command-line options and the bug-reporting address, then exit.
+
+       -V, --version
+              Print the version number of grep to the standard output stream.  This version number should be included in all bug reports (see
+              below).
+
+   Matcher Selection
+       -E, --extended-regexp
+              Interpret PATTERN as an extended regular expression (ERE, see below).  (-E is specified by POSIX.)
+
+       -F, --fixed-strings
+              Interpret  PATTERN  as  a  list  of  fixed  strings, separated by newlines, any of which is to be matched.  (-F is specified by
+              POSIX.)
+
+       -G, --basic-regexp
+              Interpret PATTERN as a basic regular expression (BRE, see below).  This is the default.
+
+       -P, --perl-regexp
+              Interpret PATTERN as a Perl regular expression.  This is highly experimental and grep -P may warn of unimplemented features.
+
+   Matching Control
+       -e PATTERN, --regexp=PATTERN
+              Use PATTERN as the pattern.  This can be used to specify multiple search patterns, or to protect a  pattern  beginning  with  a
+              hyphen (-).  (-e is specified by POSIX.)
+
+       -f FILE, --file=FILE
+              Obtain  patterns  from  FILE,  one  per  line.   The  empty file contains zero patterns, and therefore matches nothing.  (-f is
+              specified by POSIX.)
+
+       -i, --ignore-case
+              Ignore case distinctions in both the PATTERN and the input files.  (-i is specified by POSIX.)
+
+       -v, --invert-match
+              Invert the sense of matching, to select non-matching lines.  (-v is specified by POSIX.)
+
+       -w, --word-regexp
+              Select only those lines containing matches that form whole words.  The test is that the matching substring must  either  be  at
+              the  beginning  of  the  line, or preceded by a non-word constituent character.  Similarly, it must be either at the end of the
+              line or followed by a non-word constituent character.  Word-constituent characters are letters, digits, and the underscore.
+[baseuser4@rhel6 Mandar7878]$ ll
+total 12
+-rw-rw-r-- 1 baseuser4 baseuser4    0 Jul  6 18:01 jen
+-rw-r--r-- 1 baseuser4 baseuser4 5137 Jul  3 20:07 runOut.txt
+drwxrwxr-x 2 baseuser4 baseuser4 4096 Jul  6 17:52 test12
+[baseuser4@rhel6 Mandar7878]$ clear
+[baseuser4@rhel6 Mandar7878]$ touch hari.txt
+[baseuser4@rhel6 Mandar7878]$ ll -i
+total 12
+286810 -rw-rw-r-- 1 baseuser4 baseuser4    0 Jul  6 18:35 hari.txt
+286802 -rw-rw-r-- 1 baseuser4 baseuser4    0 Jul  6 18:01 jen
+286710 -rw-r--r-- 1 baseuser4 baseuser4 5137 Jul  3 20:07 runOut.txt
+286800 drwxrwxr-x 2 baseuser4 baseuser4 4096 Jul  6 17:52 test12
+[baseuser4@rhel6 Mandar7878]$ rm hari.txt
+[baseuser4@rhel6 Mandar7878]$ ll -l
+total 12
+-rw-rw-r-- 1 baseuser4 baseuser4    0 Jul  6 18:01 jen
+-rw-r--r-- 1 baseuser4 baseuser4 5137 Jul  3 20:07 runOut.txt
+drwxrwxr-x 2 baseuser4 baseuser4 4096 Jul  6 17:52 test12
+[baseuser4@rhel6 Mandar7878]$ pwd
+/home/baseuser4/Mandar7878
+[baseuser4@rhel6 Mandar7878]$ ifconfig
+eth1      Link encap:Ethernet  HWaddr FA:16:3E:3B:E8:2A
+          inet addr:10.44.189.223  Bcast:10.44.189.255  Mask:255.255.254.0
+          inet6 addr: fe80::f816:3eff:fe3b:e82a/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:348906 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:66852 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:31091606 (29.6 MiB)  TX bytes:21071783 (20.0 MiB)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:502 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:502 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:35890 (35.0 KiB)  TX bytes:35890 (35.0 KiB)
+[baseuser4@rhel6 Mandar7878]$ locate syslog | more
+/etc/rsyslog.conf
+/etc/latrace.d/syslog.conf
+/etc/logrotate.d/syslog
+/etc/pki/rsyslog
+/etc/rc.d/init.d/rsyslog
+/etc/rc.d/rc0.d/K88rsyslog
+/etc/rc.d/rc1.d/K88rsyslog
+/etc/rc.d/rc2.d/S12rsyslog
+/etc/rc.d/rc3.d/S12rsyslog
+/etc/rc.d/rc4.d/S12rsyslog
+/etc/rc.d/rc5.d/S12rsyslog
+/etc/rc.d/rc6.d/K88rsyslog
+/etc/sysconfig/rsyslog
+/lib64/rsyslog
+/lib64/rsyslog/imfile.so
+/lib64/rsyslog/imklog.so
+/lib64/rsyslog/immark.so
+/lib64/rsyslog/imtcp.so
+/lib64/rsyslog/imudp.so
+/lib64/rsyslog/imuxsock.so
+/lib64/rsyslog/lmnet.so
+/lib64/rsyslog/lmnetstrms.so
+/lib64/rsyslog/lmnsd_ptcp.so
+/lib64/rsyslog/lmregexp.so
+/lib64/rsyslog/lmstrmsrv.so
+/lib64/rsyslog/lmtcpclt.so
+/lib64/rsyslog/lmtcpsrv.so
+/lib64/rsyslog/lmzlibw.so
+/lib64/rsyslog/ommail.so
+/lib64/rsyslog/omtesting.so
+/sbin/rsyslogd
+/usr/include/syslog.h
+/usr/include/bits/syslog-ldbl.h
+/usr/include/bits/syslog-path.h
+/usr/include/bits/syslog.h
+/usr/include/pgsql/server/postmaster/syslogger.h
+/usr/include/sys/syslog.h
+/usr/lib/x86_64-redhat-linux5E/include/syslog.h
+/usr/lib/x86_64-redhat-linux5E/include/bits/syslog-ldbl.h
+/usr/lib/x86_64-redhat-linux5E/include/bits/syslog-path.h
+/usr/lib/x86_64-redhat-linux5E/include/bits/syslog.h
+/usr/lib/x86_64-redhat-linux5E/include/sys/syslog.h
+/usr/lib64/compat-openmpi/lib/openmpi/mca_notifier_syslog.so
+/usr/lib64/compat-openmpi-psm/lib/openmpi/mca_notifier_syslog.so
+/usr/lib64/perl5/syslog.ph
+/usr/lib64/perl5/bits/syslog-ldbl.ph
+/usr/lib64/perl5/bits/syslog-path.ph
+/usr/lib64/perl5/bits/syslog.ph
+/usr/lib64/perl5/sys/syslog.ph
+/usr/lib64/python2.6/lib-dynload/syslog.so
+/usr/share/augeas/lenses/dist/syslog.aug
+/usr/share/augeas/lenses/dist/tests/test_syslog.aug
+/usr/share/doc/rsyslog-4.6.2
+/usr/share/doc/m2crypto-0.20.2/demo/medusa/m_syslog.py
+/usr/share/doc/m2crypto-0.20.2/demo/medusa054/m_syslog.py
+/usr/share/doc/mdadm-3.2.2/syslog-events
+/usr/share/doc/pam-devel-1.1.1/html/mwg-see-programming-syslog.html
+/usr/share/doc/rsyslog-4.6.2/AUTHORS
+/usr/share/doc/rsyslog-4.6.2/COPYING
+/usr/share/doc/rsyslog-4.6.2/ChangeLog
+/usr/share/doc/rsyslog-4.6.2/NEWS
+/usr/share/doc/rsyslog-4.6.2/README
+/usr/share/doc/rsyslog-4.6.2/bugs.html
+/usr/share/doc/rsyslog-4.6.2/build_from_repo.html
+/usr/share/doc/rsyslog-4.6.2/contributors.html
+/usr/share/doc/rsyslog-4.6.2/debug.html
+[baseuser4@rhel6 Mandar7878]$
+ [baseuser4@rhel6 Mandar7878]$ ping www.google.com
+PING www.google.com (216.58.196.100) 56(84) bytes of data.
+q
+quit
+^C
+--- www.google.com ping statistics ---
+184 packets transmitted, 0 received, 100% packet loss, time 183872ms
+
+[baseuser4@rhel6 Mandar7878]$ ping 10.77.164.6
+PING 10.77.164.6 (10.77.164.6) 56(84) bytes of data.
+64 bytes from 10.77.164.6: icmp_seq=1 ttl=123 time=4.20 ms
+From 10.44.188.248: icmp_seq=2 Redirect Host(New nexthop: 10.44.188.1)
+64 bytes from 10.77.164.6: icmp_seq=2 ttl=123 time=4.82 ms
+64 bytes from 10.77.164.6: icmp_seq=3 ttl=123 time=3.70 ms
+64 bytes from 10.77.164.6: icmp_seq=4 ttl=123 time=5.62 ms
+64 bytes from 10.77.164.6: icmp_seq=5 ttl=123 time=3.54 ms
+64 bytes from 10.77.164.6: icmp_seq=6 ttl=123 time=4.79 ms
+64 bytes from 10.77.164.6: icmp_seq=7 ttl=123 time=3.73 ms
+64 bytes from 10.77.164.6: icmp_seq=8 ttl=123 time=12.5 ms
+64 bytes from 10.77.164.6: icmp_seq=9 ttl=123 time=5.01 ms
+64 bytes from 10.77.164.6: icmp_seq=10 ttl=123 time=3.87 ms
+q64 bytes from 10.77.164.6: icmp_seq=11 ttl=123 time=4.23 ms                                                                                                64 bytes from 10.77.164.6: icmp_seq=12 ttl=123 time=3.78 ms
+64 bytes from 10.77.164.6: icmp_seq=13 ttl=123 time=5.72 ms
+64 bytes from 10.77.164.6: icmp_seq=14 ttl=123 time=4.38 ms
+^C
+--- 10.77.164.6 ping statistics ---
+14 packets transmitted, 14 received, 0% packet loss, time 13080ms
+rtt min/avg/max/mdev = 3.541/5.000/12.573/2.207 ms
+[baseuser4@rhel6 Mandar7878]$ ll -l
+total 12
+-rw-rw-r-- 1 baseuser4 baseuser4    0 Jul  6 18:01 jen
+-rw-r--r-- 1 baseuser4 baseuser4 5137 Jul  3 20:07 runOut.txt
+drwxrwxr-x 2 baseuser4 baseuser4 4096 Jul  6 17:52 test12
+[baseuser4@rhel6 Mandar7878]$  chmod runOut.txt -777
+chmod: invalid option -- '7'
+Try `chmod --help' for more information.
+[baseuser4@rhel6 Mandar7878]$  chmod -777 runOut.txt
+chmod: invalid option -- '7'
+Try `chmod --help' for more information.
+[baseuser4@rhel6 Mandar7878]$  chmod 777 runOut.txt
+[baseuser4@rhel6 Mandar7878]$ ll -l
+total 12
+-rw-rw-r-- 1 baseuser4 baseuser4    0 Jul  6 18:01 jen
+-rwxrwxrwx 1 baseuser4 baseuser4 5137 Jul  3 20:07 runOut.txt
+drwxrwxr-x 2 baseuser4 baseuser4 4096 Jul  6 17:52 test12
+[baseuser4@rhel6 Mandar7878]$
+ [baseuser4@rhel6 Mandar7878]$ vim search.txt
+[baseuser4@rhel6 Mandar7878]$ cat search.txt
+Hello All,
+This is linux practice session.
+We are happy to see you all.
+Weloome all of you.
+Happy Learning
+[baseuser4@rhel6 Mandar7878]$ ll
+total 16
+-rw-rw-r-- 1 baseuser4 baseuser4    0 Jul  6 18:01 jen
+-rwxrwxrwx 1 baseuser4 baseuser4 5137 Jul  3 20:07 runOut.txt
+-rw-rw-r-- 1 baseuser4 baseuser4  107 Jul  6 19:07 search.txt
+drwxrwxr-x 2 baseuser4 baseuser4 4096 Jul  6 17:52 test12
+[baseuser4@rhel6 Mandar7878]$ mv runOut.txt test12/
+[baseuser4@rhel6 Mandar7878]$ ll
+total 8
+-rw-rw-r-- 1 baseuser4 baseuser4    0 Jul  6 18:01 jen
+-rw-rw-r-- 1 baseuser4 baseuser4  107 Jul  6 19:07 search.txt
+drwxrwxr-x 2 baseuser4 baseuser4 4096 Jul  6 19:09 test12
+[baseuser4@rhel6 Mandar7878]$ ll test12/
+total 8
+-rwxrwxrwx 1 baseuser4 baseuser4 5137 Jul  3 20:07 runOut.txt
+[baseuser4@rhel6 Mandar7878]$ cp test12/runOut.txt runoutcp.txt
+[baseuser4@rhel6 Mandar7878]$ ll -l
+total 16
+-rw-rw-r-- 1 baseuser4 baseuser4    0 Jul  6 18:01 jen
+-rwxrwxr-x 1 baseuser4 baseuser4 5137 Jul  6 19:10 runoutcp.txt
+-rw-rw-r-- 1 baseuser4 baseuser4  107 Jul  6 19:07 search.txt
+drwxrwxr-x 2 baseuser4 baseuser4 4096 Jul  6 19:09 test12
+[baseuser4@rhel6 Mandar7878]$ grep -i hello runoutcp.txt
+[baseuser4@rhel6 Mandar7878]$ grep -i "hello" runoutcp.txt
+[baseuser4@rhel6 Mandar7878]$ grep -i "happy" runoutcp.txt
+[baseuser4@rhel6 Mandar7878]$ grep -i "happy" test12/runOut.txt
+[baseuser4@rhel6 Mandar7878]$ grep -i "happy"
+^C
+[baseuser4@rhel6 Mandar7878]$ grep

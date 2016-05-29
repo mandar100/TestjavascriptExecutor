@@ -1,0 +1,8 @@
+http://jira.hach.ewqg.com/browse/FUSCA-2950
+
+http://jira.hach.ewqg.com/browse/FUSCA-2929
+
+A-ISE_Set_Setting_Parameter0.jpg
+N-ISE_Set_Setting_Parameter0.jpg
+
+N-ISE_No_Set_Setting_For_Parameter0.jpg, A-ISE_No_Set_Setting_For_Parameter0.jpg

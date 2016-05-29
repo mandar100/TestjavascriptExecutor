@@ -1,0 +1,435 @@
+SQL_Questies
+
+alter table employee
+add dept_id number;
+
+create table department 
+(
+dept_id number primary key,
+dept_name varchar2(20),
+manager_id number,
+foreign key (manager_id) references employee(emp_id)
+)
+
+create table job_history
+(
+job_id varchar2(20),
+emp_id number,
+department_id number,
+foreign key (emp_id) references employee(emp_id),
+foreign key (department_id) references department (dept_id)
+);
+
+--Bind and Host Variable
+variable gvn_total_salary  number;
+declare
+  vn_basic_salary  number :=3000;
+  vn_bonus  number := 1000;
+begin
+  :gvn_total_salary:= vn_basic_salary + vn_bonus;
+end;
+PRINT gvn_total_salary
+Calculate Monthly Salary
+set serveroutput on
+declare
+ v_sal number(9,2) :=60000;
+ begin
+ v_sal:=v_sal/12;
+ dbms_output.put_line('The monthly salary is'||to_char(v_sal));
+ end;
+ 
+ --Case Statements
+set serveroutput on
+declare
+  v_grade varchar2(20):='gA';
+  v_appraisal varchar2(500);
+Begin
+  v_appraisal := 
+          case v_grade
+            when'A' then'excellent'
+            when'B'then'very Good'
+            when'C'then'Good'
+            else 'No such Grade'
+          end;
+        dbms_output.put_line('Appraisal is '|| v_appraisal);
+end;
+--Search Case Statements
+set serveroutput on
+declare
+  v_grade varchar2(20):='B';
+  v_appraisal varchar2(500);
+Begin
+  v_appraisal := 
+          case 
+            when v_grade='A' then'excellent'
+            when v_grade='B'then'very Good'
+            when v_grade='C'then'Good'
+            else 'No such Grade'
+          end;
+        dbms_output.put_line('Appraisal is '|| v_appraisal);
+end;
+
+--Handling Null condition
+set serveroutput on
+declare
+  x number;
+  y number;
+begin
+  x:=10;
+  y:=null;
+  if x!=y then
+    dbms_output.put_line(to_char(x)||' '||to_char(y));
+  end if;
+end;
+
+set serveroutput on
+declare
+  x number;
+  y number;
+begin
+  x:=null;
+  y:=null;
+  if x=y then
+    dbms_output.put_line(to_char(x)||' '||to_char(y));
+  end if;
+end;
+
+create table shipper
+(
+shipper_id number,
+company_name VARCHAR2(50),
+pnone_number number
+)
+
+--basic loop hands on
+declare
+  counter number :=1;
+  ship_id shipper.shipper_id% TYPE;
+  cpy_name shipper.company_name% TYPE :='Nortan';
+  phn_num shipper.phone_number% TYPE :=9896678876;
+begin
+  select max(shipper_id) into ship_id
+  from shipper
+  where company_name= cpy_name;
+  loop
+    insert into shipper(shipper_id, company_name, phone_number)
+    values ((ship_id + counter), cpy_name, phn_num);
+    counter := counter+1;
+    exit when counter>3;
+  end loop;
+end;
+
+--Use of while Loop
+declare
+v_counter number(2):=1;
+v_shp_id shipper.shipper_id%TYPE;
+v_com_name shipper.company_name%TYPE :='Quick Hill';
+v_phn_no shipper.phone_number%TYPE := 9856455667;
+begin
+select max(shipper_id) into v_shp_id
+from shipper;
+
+while v_counter<=3  loop
+
+insert into shipper values ((v_shp_id+v_counter),v_com_name,v_phn_no);
+v_counter:= v_counter+1;
+end loop;
+
+end;
+
+--For loop hands on
+declare
+  v_counter number(2):=1;
+  v_shp_id shipper.shipper_id%TYPE;
+  v_com_name shipper.company_name%TYPE :='Nortan';
+  v_phn_no shipper.phone_number%TYPE := 9856876667;
+begin
+  select max(shipper_id) into v_shp_id
+  from shipper
+  where company_name= v_com_name;
+  
+  for v_counter in 2..5  loop
+    insert into shipper values ((v_shp_id+v_counter),v_com_name,v_phn_no);
+  end loop;
+end;
+
+--Use of nested loop
+set serveroutput on
+declare
+v_counter number :=0;
+v_icnt number :=0;
+v_jcnt number :=0;
+v_sum number :=0;
+begin
+  <<outer_loop>>
+  loop
+  v_counter := v_counter+1;
+  v_jcnt:=0;
+  v_sum:=0;
+    <<inner_loop>>
+    loop
+      v_sum:=v_sum+v_counter;
+      v_jcnt:= v_jcnt+1;
+    exit inner_loop when v_jcnt>4;
+    dbms_output.put_line('The sum is: '||to_char(v_sum));
+    end loop inner_loop;
+  v_icnt:=v_icnt+1;
+  dbms_output.put_line(' ');
+  exit outer_loop when v_icnt>2;
+  end loop outer_loop;
+end;
+
+--implicite cursor
+variable rows_deleted varchar2(20);  
+declare
+  v_emp_id employee.emp_id%TYPE := 7;  
+begin
+  delete from employee
+  where emp_id= v_emp_id;
+  :rows_deleted := (sql%rowcount||' rows deleted');
+end;
+print rows_deleted
+
+
+--explicite cursor
+set serveroutput on
+declare
+  v_emp_id employee.emp_id%TYPE;
+  v_emp_name employee.emp_name%TYPE;
+  cursor emp_cur is
+  select emp_id, emp_name from employee
+  where dept_id=111;
+begin
+  if not emp_cur%isopen then
+    open emp_cur;
+  end if;
+  loop
+    fetch emp_cur into v_emp_id, v_emp_name;
+    exit when emp_cur%rowcount>10 or emp_cur%notfound;
+    dbms_output.put_line(to_char(v_emp_id)||' '||v_emp_name);
+  end loop;
+  close emp_cur;
+end;
+
+
+--User Defined function demo
+create or replace function get_sal
+(p_id in employee.emp_id%TYPE)
+return number
+IS
+  v_sal employee.salary%TYPE :=0;
+begin
+  select salary into v_sal
+  from employee
+  where emp_id=p_id;
+  return v_sal;
+end get_sal;
+
+select get_sal(12) from dual;
+
+--Return commission percentage value
+
+create or replace function comm (v_value in number)
+return NUMBER
+is
+begin
+  RETURN v_value*0.008;
+end comm;
+
+select comm(50000) from dual
+
+--create stored procedure to get employee details
+create or replace procedure get_emp_details
+(
+  p_id in employee.emp_id%TYPE,
+  p_name out employee.emp_name%TYPE,
+  p_salary out employee.salary%TYPE,
+  p_dept out employee.dept_id%TYPE
+)
+is
+begin
+  select emp_name, salary, dept_id into p_name, p_salary, p_dept
+  from employee
+  where emp_id= p_id;
+end;
+--call to store procedure
+declare
+  v_id employee.emp_id%TYPE;
+  v_name employee.emp_name%TYPE;
+  v_salary employee.salary%TYPE;
+  v_dept employee.dept_id%TYPE;
+begin
+  v_id :=12;
+  get_emp_details
+  (
+    p_id=>v_id,
+    p_name=>v_name,
+    p_salary=>v_salary,
+    p_dept=>v_dept
+  );
+  dbms_output.put_line('employee id is '||to_char(v_id));
+  dbms_output.put_line('employee name is '||v_name);
+  dbms_output.put_line('employee salary is '||to_char(v_salary));
+  dbms_output.put_line('employee department is '||to_char(v_dept));
+end;
+set serveroutput on;
+
+
+--create stored procedure to format phone number
+
+create or replace procedure format_phone_number (p_number in out VARCHAR2)
+is
+begin
+  p_number:='('||substr(p_number,1,3)||')'||substr(p_number,4,3)||'-'||substr(p_number,7);
+end;
+
+variable g_phone_number varchar2(15)
+begin
+  :g_phone_number:='9867456434';
+end;
+print g_phone_number
+execute format_phone_number(:g_phone_number)
+print g_phone_number
+
+--User Defined exception
+set serveroutput on
+define p_dept_id=111
+declare
+  e_emps_remaining exception;
+  pragma exception_init(e_emps_remaining, -2292);
+begin
+  delete from department
+  where dept_id=&p_dept_id;
+  commit;
+  exception
+    WHEN e_emps_remaining then
+      dbms_output.put_line('cannot remove department '||to_char(&p_dept_id)||' Employee already exist');
+end;
+
+--Trap exception using SQLCODE and SQLERRM
+set serveroutput on
+declare
+  v_sql_code number;
+  v_sql_message varchar2(255);
+  v_a   number:=6;
+begin
+  v_a:= v_a/0;
+  EXCEPTION
+    WHEN OTHERS then
+      v_sql_code:=SQLCODE;
+      v_sql_message:= substr(SQLERRM,1,100);
+end;
+  dbms_output.put_line(to_char(v_sql_code)||''|| v_sql_message);
+
+--Trap exception (User Defined exception)
+set serveroutput on
+define e_emp_id =400
+define e_emp_name='Romesh'
+declare
+ e_invalid_employee exception;
+begin
+  update employee
+  set emp_name='&e_emp_name'
+  where emp_id=&e_emp_id;
+  if sql%notfound then
+    raise e_invalid_employee;
+  end if;
+  commit;
+  exception
+    when e_invalid_employee then
+      dbms_output.put_line('No such employee exist');
+end;
+
+--Propageting exception
+set serveroutput on
+declare
+  v_dept_id NUMBER;
+  v_no_rows exception;
+  v_integrity exception;
+  pragma exception_init(v_integrity, -2292);
+begin
+  begin
+    select count(*) into v_dept_id
+    from employee
+    where dept_id= '700';
+    if v_dept_id=0 then
+      RAISE v_no_rows;    
+    end if;
+  end;
+  exception
+    when v_no_rows THEN
+      dbms_output.put_line('No such rows found');
+    when v_integrity THEN
+      dbms_output.put_line('integrity error');
+end;
+
+-------------------------------------------------------
+--calling stored procedure using different method
+create or replace procedure v_add_employee
+(
+  e_name IN employee.emp_name%TYPE default 'Rajeshware',
+  e_salary IN employee.salary%TYPE default 6000,
+  e_dept_id IN employee.dept_id%TYPE default 3
+)
+IS
+e_emp_id number;
+
+begin  
+  select max(emp_id) into e_emp_id
+  from employee;
+  e_emp_id:=e_emp_id+1;
+   insert into employee values (e_emp_id, e_name, e_salary, e_dept_id);
+end;
+
+begin
+v_add_employee;
+commit;
+end;
+
+begin
+v_add_employee('Dhiraj', 78000, 2);
+commit;
+end;
+
+--Queries to data dictionary
+select * from TAB;
+select * from COL;
+--Trigger Demo
+create or replace trigger secure_emp
+before insert on employee
+begin 
+  if ((to_char(sysdate, 'DY')) in ('SAT','SUN')) or ((to_char(sysdate, 'HH24:MI')) not between '08:00' and '16:00') then
+    raise_application_error(-20500, 'You may have insert into employee table only during working hours.');    
+  end if;
+end;
+
+select to_char(sysdate, 'DD-MON-YYYY DAY HH24:MI:SS AM') from dual;
+
+insert into employee values (144, 'Yakub', 55000,'');
+
+
+--Trigger Demo
+create or replace trigger secure_emp_action
+before insert or delete or update on employee
+begin 
+  if ((to_char(sysdate, 'DY')) in ('SAT','SUN')) or ((to_char(sysdate, 'HH24:MI')) not between '08:00' and '16:00') then
+    --raise_application_error(-20500, 'You may have insert into employee table only during working hours.'); 
+    if deleting THEN
+       raise_application_error(-20502, 'You may have delete from employee table only during working hours.'); 
+    elsif inserting THEN
+       raise_application_error(-20500, 'You may have insert into employee table only during working hours.');     
+    elsif updating('salary') THEN
+       raise_application_error(-20503, 'You may have update employee salary only during working hours.'); 
+    else
+        raise_application_error(-20504, 'You may have update employee table only during working hours.'); 
+    end if;
+  end if;
+end;
+ alter trigger secure_emp disable;
+select to_char(sysdate, 'DD-MON-YYYY DAY HH24:MI:SS AM') from dual;
+
+insert into employee values (144, 'Yakub', 55000,'');
+
+update employee
+set emp_name='Ronak'
+where emp_id=102;
